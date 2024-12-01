@@ -32,7 +32,7 @@ function MainScreen() {
           const data = response.data;
           const fieldValue = data.response;
           console.log(fieldValue);
-          setMessages([...newMessages, { text: fieldValue, sender: "bot" }]);
+          setMessages([...newMessages, { text: fieldValue + "Sources (" + data.sources.join(", ") + ")", sender: "bot" }]);
     })
     setLoading(false)
   }
