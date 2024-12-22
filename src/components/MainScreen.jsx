@@ -10,35 +10,63 @@ function MainScreen() {
   const [course, setCourse] = useState(null);
   const [chat, setChat] = useState(null);
 
-  console.log(chat)
   const messagesEndRef = useRef(null);
+
+//  useEffect(() => {
+//      async function getChatContent() {
+//        try {
+//          const response = await axios.get("http://localhost:5000/getChatContent", {
+//            params: {
+//              chat_id: chat,
+//            },
+//          });
+//            
+//          setMessages(response.data.chat.messages);
+//          
+//        } catch (error) {
+//          console.log("Error fetching data: ", error);
+//        }
+//      }
+//  
+//      getChatContent();
+//    }, [chat]);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
   async function handleNewMessage(userMessage) {
+
+    console.log(userMessage);
+    
     setLoading(true);
-    const newMessages = [...messages, { text: userMessage, sender: "user" }];
+    const newMessages = [...messages, { message_content: userMessage, sender: "user" }];
     setMessages(newMessages);
 
     const data = {
+      term: "F24-25",
       course: course,
       query_text: userMessage,
-      user_id: "fill_here",
+      user_id: "efe.ballar",
       chat_id: chat,
     };
+    
+    
 
-    await axios.post("http://localhost:5000/course/query", data).then((response) => {
+    await axios.post("http://localhost:5000/", data).then((response) => {
+      console.log(response);
+      
       const data = response.data;
-      const fieldValue = data.response;
+      const fieldValue = data.model_response;
       setMessages([
         ...newMessages,
         {
-          text: fieldValue + " Sources (" + data.sources.join(", ") + ")",
+          message_content: fieldValue + " Sources (" + data.sources.source.join(", ") + ")",
           sender: "bot",
         },
       ]);
+      
+      setChat(data.chat_id)
     });
 
     setLoading(false);
@@ -52,7 +80,7 @@ function MainScreen() {
         <div className="flex flex-col flex-grow w-full overflow-y-auto items-center">
           <div className="flex flex-col w-3/4 overflow-y-visible">
             {messages.map((msg, index) => (
-              <Message key={index} text={msg.text} sender={msg.sender} />
+              <Message key={index} text={msg.message_content} sender={msg.sender} />
             ))}
             <div ref={messagesEndRef} />
           </div>

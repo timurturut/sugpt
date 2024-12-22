@@ -20,15 +20,19 @@ function SideBar({ setCourse, setChat }) {
 
   const [selectedCourse, setSelectedCourse] = useState(null);
 
-  useEffect(() => {
+  useEffect(() => {   
     async function getHistory() {
+      
       try {
-        const response = await axios.get("http://localhost:5000/course/query", {
+        const response = await axios.get("http://localhost:5000/getUserChats", {
           params: {
-            username: "insert_email",
+            user_name: "efe.ballar",
           },
         });
-        setHistoryArr(response);
+                
+
+        setHistoryArr(response.data.chats);
+        
       } catch (error) {
         console.log("Error fetching data: ", error);
       }
@@ -47,11 +51,11 @@ function SideBar({ setCourse, setChat }) {
   }
 
   return (
-    <div className="h-screen w-1/4 flex flex-col bg-blue-400">
+    <div className="h-screen w-1/4 flex flex-col bg-blue-400 overflow-hidden">
       <h1 className="text-white text-4xl font-semibold drop-shadow-lg mb-4 ml-2">
         SuGPT
       </h1>
-      <div className="flex flex-col items-center min-h-64 overflow-y-auto">
+      <div className="flex flex-col items-center min-h-screen overflow-y-auto">
         <Select
           className="w-full max-w-xs mb-4"
           options={courseOptions}
@@ -62,11 +66,11 @@ function SideBar({ setCourse, setChat }) {
         />
         <p className="text-white text-2xl font-semibold mb-2">History</p>
         {historyArr.length > 0 ? (
-          historyArr.map(({ id, title }) => (
+          historyArr.map(({ _id, title }) => (
             <div
-              key={id}
+              key={_id}
               className="bg-white cursor-pointer hover:bg-gray-200 w-11/12 text-blue-600 p-2 rounded-lg shadow-md mb-2"
-              onClick={() => chatChange(id)}
+              onClick={() => chatChange(_id)}
             >
               {title}
             </div>

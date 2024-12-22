@@ -11,7 +11,7 @@ function InputBox({ onSendMessage, loading }) {
   }
 
   function handleKeyDown(event) {
-    console.log(event.key)
+    // console.log(event.key)
     if (event.key === "Enter") {
       handleSend();
     }
