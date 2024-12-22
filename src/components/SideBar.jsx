@@ -4,6 +4,7 @@ import axios from "axios";
 
 function SideBar({ setCourse, setChat }) {
   const [historyArr, setHistoryArr] = useState([]);
+  const [selectedHistory, setSelectedHistory] = useState(null);
 
   const courseOptions = [
     { value: "CS305", label: "CS305" },
@@ -20,19 +21,16 @@ function SideBar({ setCourse, setChat }) {
 
   const [selectedCourse, setSelectedCourse] = useState(null);
 
-  useEffect(() => {   
+  useEffect(() => {
     async function getHistory() {
-      
       try {
         const response = await axios.get("http://localhost:5000/getUserChats", {
           params: {
             user_name: "efe.ballar",
           },
         });
-                
 
         setHistoryArr(response.data.chats);
-        
       } catch (error) {
         console.log("Error fetching data: ", error);
       }
@@ -48,6 +46,7 @@ function SideBar({ setCourse, setChat }) {
 
   function chatChange(id) {
     setChat(id);
+    setSelectedHistory(id);
   }
 
   return (
@@ -69,7 +68,9 @@ function SideBar({ setCourse, setChat }) {
           historyArr.map(({ _id, title }) => (
             <div
               key={_id}
-              className="bg-white cursor-pointer hover:bg-gray-200 w-11/12 text-blue-600 p-2 rounded-lg shadow-md mb-2"
+              className={`${
+                _id === selectedHistory ? "bg-red" : "bg-white"
+              } cursor-pointer hover:bg-gray-200 w-11/12 text-blue-600 p-2 rounded-lg shadow-md mb-2}`}
               onClick={() => chatChange(_id)}
             >
               {title}
