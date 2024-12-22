@@ -34,7 +34,7 @@ function Message({ sender, text, sources }) {
       >
         {text}
       </ReactMarkdown>
-      {sender === "bot" ? (
+      {sender === "chatbot" ? (
         <div className="flex flex-col mt-2">
           {sources && sources.length > 0 && (
             <>
@@ -42,7 +42,7 @@ function Message({ sender, text, sources }) {
               <p className="text-sm font-semibold">Sources:</p>
               {sources.map((singleSource, index) => (
                 <p key={index} className="text-xs text-gray-600">
-                  PageNumber: {singleSource.pageNumber} - Source: {singleSource.source}
+                  PageNumber: {singleSource.page} - Source: {singleSource.source}
                 </p>
               ))}
             </>

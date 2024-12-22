@@ -69,8 +69,8 @@ function SideBar({ setCourse, setChat }) {
             <div
               key={_id}
               className={`${
-                _id === selectedHistory ? "bg-red" : "bg-white"
-              } cursor-pointer hover:bg-gray-200 w-11/12 text-blue-600 p-2 rounded-lg shadow-md mb-2}`}
+                _id === selectedHistory ? "bg-red-400" : "bg-white"
+              } cursor-pointer hover:bg-gray-200 w-11/12 text-blue-600 p-2 rounded-lg shadow-md mb-2`}
               onClick={() => chatChange(_id)}
             >
               {title}

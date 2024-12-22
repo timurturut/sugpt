@@ -64,12 +64,17 @@ function MainScreen() {
         ...newMessages,
         {
           message_content:
-            fieldValue + " Sources (" + data.sources.source.join(", ") + ")",
-          sender: "bot",
+            fieldValue,
+          sender: "chatbot",
           sources: data.sources,
         },
       ]);
+      console.log(data.sources);
 
+      // console.log(messages[1]);
+      // console.log(messages[1].sender);
+            
+      
       setChat(data.chat_id);
     });
 
@@ -83,7 +88,9 @@ function MainScreen() {
       <div className="flex flex-col w-3/4 justify-end">
         <div className="flex flex-col flex-grow w-full overflow-y-auto items-center">
           <div className="flex flex-col w-3/4 overflow-y-visible">
-            {messages.map((msg, index) => (
+            { 
+              messages.map((msg, index) => (
+                
               <Message
                 key={index}
                 text={msg.message_content}
