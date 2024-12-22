@@ -1,7 +1,80 @@
-function SideBar() {
+import { useState, useEffect } from "react";
+import Select from "react-select";
+import axios from "axios";
+
+function SideBar({ setCourse, setChat }) {
+  const [historyArr, setHistoryArr] = useState([]);
+
+  const courseOptions = [
+    { value: "CS305", label: "CS305" },
+    { value: "CS404", label: "CS404" },
+    { value: "CS449", label: "CS449" },
+    { value: "CS302", label: "CS302" },
+    { value: "CS401", label: "CS401" },
+    { value: "CS307", label: "CS307" },
+    { value: "PSY203", label: "PSY203" },
+    { value: "NS206", label: "NS206" },
+    { value: "OPIM302", label: "OPIM302" },
+    { value: "SPS303", label: "SPS303" },
+  ];
+
+  const [selectedCourse, setSelectedCourse] = useState(null);
+
+  useEffect(() => {
+    async function getHistory() {
+      try {
+        const response = await axios.get("http://localhost:5000/course/query", {
+          params: {
+            username: "insert_email",
+          },
+        });
+        setHistoryArr(response);
+      } catch (error) {
+        console.log("Error fetching data: ", error);
+      }
+    }
+
+    getHistory();
+  }, []);
+
+  function handleCourseChange(option) {
+    setSelectedCourse(option);
+    setCourse(option.value);
+  }
+
+  function chatChange(id) {
+    setChat(id);
+  }
+
   return (
-    <div className="h-screen w-1/4 flex justify-center bg-gradient-to-br from-blue-400 via-blue-400 to-blue-700 backdrop-blur-md bg-opacity-70">
-      <h1 className="text-white text-4xl font-semibold drop-shadow-lg">SuGPT</h1>
+    <div className="h-screen w-1/4 flex flex-col bg-blue-400">
+      <h1 className="text-white text-4xl font-semibold drop-shadow-lg mb-4 ml-2">
+        SuGPT
+      </h1>
+      <div className="flex flex-col items-center min-h-64 overflow-y-auto">
+        <Select
+          className="w-full max-w-xs mb-4"
+          options={courseOptions}
+          value={selectedCourse}
+          onChange={handleCourseChange}
+          placeholder="Select a course"
+          isSearchable
+        />
+        <p className="text-white text-2xl font-semibold mb-2">History</p>
+        {historyArr.length > 0 ? (
+          historyArr.map(({ id, title }) => (
+            <div
+              key={id}
+              className="bg-white cursor-pointer hover:bg-gray-200 w-11/12 text-blue-600 p-2 rounded-lg shadow-md mb-2"
+              onClick={() => chatChange(id)}
+            >
+              {title}
+            </div>
+          ))
+        ) : (
+          <p className="text-white italic">No history available</p>
+        )}
+      </div>
     </div>
   );
 }

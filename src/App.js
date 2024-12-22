@@ -1,14 +1,10 @@
 import MainScreen from "./components/MainScreen";
 import SideBar from "./components/SideBar";
-
+import ProfScreen from "./components/ProfScreen";
+import { findByLabelText } from "@testing-library/react";
 
 function App() {
-  return (
-    <div className="h-full w-full flex">
-      <SideBar />
-      <MainScreen />
-    </div>
-  );
+  return <MainScreen />;
 }
 
 export default App;
