@@ -3,14 +3,7 @@ import Select from "react-select";
 import axios from "axios";
 
 function SideBar({ setCourse, setChat }) {
-  const [historyArr, setHistoryArr] = useState([
-    {_id:1,title:"test"},
-    {_id:2,title:"test"},
-    {_id:3,title:"test"},
-    {_id:4,title:"test"},
-    {_id:5,title:"test"},
-
-  ]);
+  const [historyArr, setHistoryArr] = useState([  ]);
   const [selectedHistory, setSelectedHistory] = useState(null);
 
   const courseOptions = [
@@ -33,7 +26,7 @@ function SideBar({ setCourse, setChat }) {
       try {
         const response = await axios.get("http://localhost:5000/getUserChats", {
           params: {
-            user_name: "efe.ballar",
+            user_name: "674b169e502419ebf6cfb296",
           },
         });
 
@@ -53,6 +46,7 @@ function SideBar({ setCourse, setChat }) {
 
   function chatChange(id) {
     setChat(id);
+    
     setSelectedHistory(id);
   }
 

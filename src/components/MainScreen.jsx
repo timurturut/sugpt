@@ -51,7 +51,7 @@ function MainScreen() {
       term: "F24-25",
       course: course,
       query_text: userMessage,
-      user_id: "efe.ballar",
+      user_id: "674b169e502419ebf6cfb296",
       chat_id: chat,
     };
 
@@ -70,12 +70,12 @@ function MainScreen() {
         },
       ]);
       console.log(data.sources);
-
-      // console.log(messages[1]);
-      // console.log(messages[1].sender);
             
+      // 
       
       setChat(data.chat_id);
+      console.log(chat);
+      
     });
 
     setLoading(false);
