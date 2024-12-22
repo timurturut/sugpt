@@ -105,7 +105,7 @@ function MainScreen() {
           <InputBox onSendMessage={handleNewMessage} loading={loading} />
         ) : (
           <div className="flex items-center justify-center">
-            <h1 className="text-gray-500 text-2xl font-semibold mb-2">
+            <h1 className="text-gray-500 text-2xl italic mb-6">
               Please Select a Course
             </h1>
           </div>

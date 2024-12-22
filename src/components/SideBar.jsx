@@ -3,7 +3,14 @@ import Select from "react-select";
 import axios from "axios";
 
 function SideBar({ setCourse, setChat }) {
-  const [historyArr, setHistoryArr] = useState([]);
+  const [historyArr, setHistoryArr] = useState([
+    {_id:1,title:"test"},
+    {_id:2,title:"test"},
+    {_id:3,title:"test"},
+    {_id:4,title:"test"},
+    {_id:5,title:"test"},
+
+  ]);
   const [selectedHistory, setSelectedHistory] = useState(null);
 
   const courseOptions = [
@@ -69,8 +76,8 @@ function SideBar({ setCourse, setChat }) {
             <div
               key={_id}
               className={`${
-                _id === selectedHistory ? "bg-red-400" : "bg-white"
-              } cursor-pointer hover:bg-gray-200 w-11/12 text-blue-600 p-2 rounded-lg shadow-md mb-2`}
+                _id === selectedHistory ? "bg-gray-300" : "bg-white"
+              } cursor-pointer w-11/12 text-black p-2 rounded-lg shadow-md mb-2`}
               onClick={() => chatChange(_id)}
             >
               {title}
