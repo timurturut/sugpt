@@ -29,8 +29,10 @@ function MainScreen() {
         console.log("Error fetching data: ", error);
       }
     }
-
-    getChatContent();
+    
+    if(chat) { 
+      getChatContent(); 
+    }
   }, [chat]);
 
   useEffect(() => {
