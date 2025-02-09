@@ -1,8 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import axios from "axios";
 
 function SideBar({ setCourse, setChat }) {
+
+  const navigate = useNavigate();
+
   const [historyArr, setHistoryArr] = useState([  ]);
   const [selectedHistory, setSelectedHistory] = useState(null);
 
@@ -52,9 +56,14 @@ function SideBar({ setCourse, setChat }) {
 
   return (
     <div className="h-screen w-1/4 flex flex-col bg-blue-400 overflow-hidden">
-      <h1 className="text-white text-4xl font-semibold drop-shadow-lg mb-4 ml-2">
-        SuGPT
-      </h1>
+      <div className={'flex flex-row'}>
+        <h1 className="text-white text-4xl font-semibold drop-shadow-lg mb-4 ml-2 mr-auto">
+          SuGPT
+        </h1>
+        <h1 onClick={() => navigate("/profscreen")}  className="text-white text-xl font-semibold drop-shadow-lg mb-4 mr-2 cursor-pointer">
+          File
+        </h1>
+      </div>
       <div className="flex flex-col items-center min-h-screen overflow-y-auto">
         <Select
           className="w-full max-w-xs mb-4"

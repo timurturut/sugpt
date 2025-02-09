@@ -1,10 +1,16 @@
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import MainScreen from "./components/MainScreen";
-import SideBar from "./components/SideBar";
 import ProfScreen from "./components/ProfScreen";
-import { findByLabelText } from "@testing-library/react";
 
 function App() {
-  return <MainScreen />;
+  return (
+      <Router>
+        <Routes>
+          <Route path="/" element={<MainScreen />} />
+          <Route path="/profScreen" element={<ProfScreen />} />
+        </Routes>
+      </Router>
+  );
 }
 
 export default App;
