@@ -92,7 +92,7 @@ function MainScreen() {
 
   return (
     <div className="h-screen w-full flex">
-      <SideBar setCourse={setCourse} setChat={setChat} />
+      <SideBar setCourse={setCourse} setChat={setChat} setMessages={setMessages} />
 
       <div className="flex flex-col w-3/4 justify-end">
         <div className="flex flex-col flex-grow w-full overflow-y-auto items-center">

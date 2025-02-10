@@ -4,7 +4,7 @@ import Select from "react-select";
 import axios from "axios";
 import { FaCommentAlt } from "react-icons/fa";
 
-function SideBar({ setCourse, setChat }) {
+function SideBar({ setCourse, setChat, setMessages }) {
 
   const navigate = useNavigate();
 
@@ -58,6 +58,11 @@ function SideBar({ setCourse, setChat }) {
     setSelectedHistory(id);
   }
 
+  function handleNewChat() {
+    setChat(null);
+    setMessages([]);
+  }
+
   return (
     <div className="h-screen w-1/4 flex flex-col bg-blue-400 overflow-hidden">
       <div className={'flex flex-row justify-center items-center'}>
@@ -66,7 +71,7 @@ function SideBar({ setCourse, setChat }) {
         </h1>
         <FaCommentAlt
             className="text-white text-3xl cursor-pointer hover:text-gray-200 mr-3"
-            onClick={() => setChat(null)}
+            onClick={() => handleNewChat()}
         />
       </div>
       <h1 onClick={() => navigate("/profscreen")}  className="text-white text-xl font-semibold drop-shadow-lg mb-4 mr-2 cursor-pointer w-max">
