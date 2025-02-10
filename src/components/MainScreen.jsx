@@ -104,8 +104,8 @@ function MainScreen() {
                 {_id: data.chat_id, course: data.course, last_message_time: data.last_message_time, title: data.title},
                 ...historyArr
             ];
-            setHistoryArr(newHistory)
             setSelectedHistory(chat)
+            setHistoryArr(newHistory)
         }
     });
 
