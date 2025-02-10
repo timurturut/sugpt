@@ -96,10 +96,9 @@ function MainScreen() {
       setChat(data.chat_id);
       setCourse(data.course)
 
-
       setLoading(false);
 
-        if (!oldChatStatus) {
+        if (!oldChatStatus && data.server_reponse) {
             const newHistory = [
                 {_id: data.chat_id, course: data.course, last_message_time: data.last_message_time, title: data.title},
                 ...historyArr
