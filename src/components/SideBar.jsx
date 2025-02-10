@@ -7,6 +7,7 @@ function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
 
   const navigate = useNavigate();
   const [selectedHistory, setSelectedHistory] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
   const courseOptions = [
     { value: "CS305", label: "CS305" },
@@ -20,13 +21,11 @@ function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
     { value: "SPS303", label: "SPS303" },
   ];
 
-  const [selectedCourse, setSelectedCourse] = useState(
-      courseOptions.find((option) => option.value === course) || null
-  );
 
-  function handleCourseChange(option) {
-    setSelectedCourse(option);
-    setCourse(option.value);
+  function handleCourseChange(test) {
+    const selectedOption = courseOptions.find(option => option.value === course) || null;
+    setSelectedCourse(selectedOption);
+    // setCourse(test.value);
   }
 
   function chatChange(id) {
@@ -59,7 +58,7 @@ function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
         <Select
           className="w-full max-w-xs mb-4"
           options={courseOptions}
-          defaultValue={selectedCourse}
+          value={selectedCourse}
           onChange={handleCourseChange}
           placeholder="Select a course"
           isSearchable
