@@ -59,7 +59,7 @@ function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
         <Select
           className="w-full max-w-xs mb-4"
           options={courseOptions}
-          value={selectedCourse}
+          defaultValue={selectedCourse}
           onChange={handleCourseChange}
           placeholder="Select a course"
           isSearchable
