@@ -35,6 +35,7 @@ function SideBar({ setCourse, course, setChat, chat, setMessages, historyArr }) 
     setChat(null);
     setMessages([]);
     setSelectedHistory(null);
+    setCourse(null);
   }
 
   return (
