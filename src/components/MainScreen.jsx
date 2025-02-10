@@ -10,7 +10,7 @@ function MainScreen() {
   const [course, setCourse] = useState(null);
   const [chat, setChat] = useState(null);
   const [historyArr, setHistoryArr] = useState([]);
-
+  const [selectedHistory, setSelectedHistory] = useState(null);
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
@@ -105,6 +105,7 @@ function MainScreen() {
                 ...historyArr
             ];
             setHistoryArr(newHistory)
+            setSelectedHistory(chat)
         }
     });
 
@@ -112,7 +113,7 @@ function MainScreen() {
 
   return (
     <div className="h-screen w-full flex">
-      <SideBar chat={chat} course={course} setCourse={setCourse} setChat={setChat} setMessages={setMessages} historyArr={historyArr} />
+      <SideBar setSelectedHistory = {setSelectedHistory} selectedHistory={selectedHistory} chat={chat} course={course} setCourse={setCourse} setChat={setChat} setMessages={setMessages} historyArr={historyArr} />
 
       <div className="flex flex-col w-3/4 justify-end">
         <div className="flex flex-col flex-grow w-full overflow-y-auto items-center">

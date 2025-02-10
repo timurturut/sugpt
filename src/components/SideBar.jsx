@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { FaCommentAlt } from "react-icons/fa";
 
-function SideBar({ setCourse, course, setChat, chat, setMessages, historyArr }) {
+function SideBar({ setCourse, course, setChat, chat, setMessages, historyArr, selectedHistory, setSelectedHistory }) {
 
   const navigate = useNavigate();
-  const [selectedHistory, setSelectedHistory] = useState(null);
+
 
 
   const courseOptions = [
