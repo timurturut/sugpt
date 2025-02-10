@@ -1,15 +1,13 @@
-import { useState, useEffect } from "react";
+import { useState} from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
-import axios from "axios";
 import { FaCommentAlt } from "react-icons/fa";
 
-function SideBar({ setCourse, setChat, setMessages }) {
+function SideBar({ setCourse, setChat, setMessages, historyArr }) {
 
   const navigate = useNavigate();
-
-  const [historyArr, setHistoryArr] = useState([  ]);
   const [selectedHistory, setSelectedHistory] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(null);
 
   const courseOptions = [
     { value: "CS305", label: "CS305" },
@@ -23,29 +21,6 @@ function SideBar({ setCourse, setChat, setMessages }) {
     // { value: "OPIM302", label: "OPIM302" },
     { value: "SPS303", label: "SPS303" },
   ];
-
-  const [selectedCourse, setSelectedCourse] = useState(null);
-
-  useEffect(() => {
-    async function getHistory() {
-      try {
-        // console.log("getUserChats cagrildi ");
-        // console.log(`chatID : ${chat}`);
-        const response = await axios.get("http://localhost:5000/getUserChats", {
-          params: {
-            user_name: "674b169e502419ebf6cfb296",
-          },
-        });
-        console.log(response.data.chats);
-        
-        setHistoryArr(response.data.chats);
-      } catch (error) {
-        console.log("Error fetching data: ", error);
-      }
-    }
-
-    getHistory();
-  }, []);
 
   function handleCourseChange(option) {
     setSelectedCourse(option);
@@ -61,6 +36,7 @@ function SideBar({ setCourse, setChat, setMessages }) {
   function handleNewChat() {
     setChat(null);
     setMessages([]);
+    selectedHistory(null);
   }
 
   return (

@@ -9,6 +9,7 @@ function MainScreen() {
   const [loading, setLoading] = useState(false);
   const [course, setCourse] = useState(null);
   const [chat, setChat] = useState(null);
+  const [historyArr, setHistoryArr] = useState([]);
 
   const messagesEndRef = useRef(null);
 
@@ -23,7 +24,6 @@ function MainScreen() {
             },
           }
         );
-
         setMessages(response.data.chat.messages);
       } catch (error) {
         console.log("Error fetching data: ", error);
@@ -34,6 +34,23 @@ function MainScreen() {
       getChatContent(); 
     }
   }, [chat]);
+
+  useEffect(() => {
+    async function getHistory() {
+      try {
+        const response = await axios.get("http://localhost:5000/getUserChats", {
+          params: {
+            user_name: "674b169e502419ebf6cfb296",
+          },
+        });
+        setHistoryArr(response.data.chats);
+      } catch (error) {
+        console.log("Error fetching data: ", error);
+      }
+    }
+
+    getHistory();
+  }, []);
 
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -74,25 +91,21 @@ function MainScreen() {
           sources: data.sources,
         },
       ]);
-      
-      console.log("----query sonucu----");
-      console.log(data);
-      console.log("----query sonucu----");
-      // console.log(data.sources);
-            
-      // 
-      
+
       setChat(data.chat_id);
-      console.log(`set Chat ID as: ${chat}`);
-      
     });
 
     setLoading(false);
+    const newHistory = [
+      ...historyArr,
+      { _id: data.chat_id, course: data.course, last_message_time: data.last_message_time, title: data.title },
+    ];
+    setHistoryArr(newHistory)
   }
 
   return (
     <div className="h-screen w-full flex">
-      <SideBar setCourse={setCourse} setChat={setChat} setMessages={setMessages} />
+      <SideBar setCourse={setCourse} setChat={setChat} setMessages={setMessages} historyArr={historyArr} />
 
       <div className="flex flex-col w-3/4 justify-end">
         <div className="flex flex-col flex-grow w-full overflow-y-auto items-center">
