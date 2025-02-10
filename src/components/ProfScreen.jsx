@@ -64,11 +64,11 @@ function ProfScreen({name}) {
         async function getCourseFiles() {
             if (!activeLesson) return;
 
-            try {
-                const response = await axios.get("http://localhost:5000/getChatContent", {
+            try {                
+                const response = await axios.get("http://localhost:5000/getCourseFiles", {
                     params: {course_code: activeLesson},
                 });
-
+                
                 setDocuments(response.data.files);
             } catch (error) {
                 console.log("Error fetching data: ", error);
@@ -123,7 +123,7 @@ function ProfScreen({name}) {
                             <tr key={index}>
                                 <th>{index + 1}</th>
                                 <td>{doc.name}</td>
-                                <td>{doc.size}</td>
+                                <td>{(doc.size / (1024 * 1024)).toFixed(2)} MB</td>
                                 <td className="text-right pr-8">
                                     <button
                                         className="btn btn-error btn-md"

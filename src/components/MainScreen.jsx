@@ -93,14 +93,16 @@ function MainScreen() {
       ]);
 
       setChat(data.chat_id);
+      
+            
+      setLoading(false);
+      const newHistory = [
+        { _id: data.chat_id, course: data.course, last_message_time: data.last_message_time, title: data.title },
+        ...historyArr
+      ];
+      setHistoryArr(newHistory)
     });
 
-    setLoading(false);
-    const newHistory = [
-      ...historyArr,
-      { _id: data.chat_id, course: data.course, last_message_time: data.last_message_time, title: data.title },
-    ];
-    setHistoryArr(newHistory)
   }
 
   return (
