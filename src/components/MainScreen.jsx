@@ -30,9 +30,9 @@ function MainScreen() {
         console.log("Error fetching data: ", error);
       }
     }
-    
-    if(chat) { 
-      getChatContent(); 
+
+    if(chat) {
+      getChatContent();
     }
   }, [chat]);
 
@@ -92,17 +92,20 @@ function MainScreen() {
           sources: data.sources,
         },
       ]);
-
+      const oldChatStatus = chat;
       setChat(data.chat_id);
       setCourse(data.course)
-      
-            
+
+
       setLoading(false);
-      const newHistory = [
-        { _id: data.chat_id, course: data.course, last_message_time: data.last_message_time, title: data.title },
-        ...historyArr
-      ];
-      setHistoryArr(newHistory)
+
+        if (!oldChatStatus) {
+            const newHistory = [
+                {_id: data.chat_id, course: data.course, last_message_time: data.last_message_time, title: data.title},
+                ...historyArr
+            ];
+            setHistoryArr(newHistory)
+        }
     });
 
   }
@@ -114,9 +117,9 @@ function MainScreen() {
       <div className="flex flex-col w-3/4 justify-end">
         <div className="flex flex-col flex-grow w-full overflow-y-auto items-center">
           <div className="flex flex-col w-3/4 overflow-y-visible">
-            { 
+            {
               messages.map((msg, index) => (
-                
+
               <Message
                 key={index}
                 text={msg.message_content}
