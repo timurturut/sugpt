@@ -42,7 +42,7 @@ function Message({ sender, text, sources }) {
               <p className="text-sm font-semibold">Sources:</p>
               {sources.map((singleSource, index) => (
                 <p key={index} className="text-xs text-gray-600">
-                  PageNumber: {singleSource.page} - Source: {singleSource.source}
+                  Source: {singleSource.pdf} - Page Number: {singleSource.page} 
                 </p>
               ))}
             </>

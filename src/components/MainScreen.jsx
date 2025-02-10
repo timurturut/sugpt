@@ -40,7 +40,8 @@ function MainScreen() {
   }, [messages]);
 
   async function handleNewMessage(userMessage) {
-    console.log(userMessage);
+    console.log(`Chat ID : ${chat}`);
+    console.log(`User Message: ${userMessage}`);
 
     setLoading(true);
     const newMessages = [
@@ -52,10 +53,12 @@ function MainScreen() {
     const data = {
       term: "F24-25",
       course: course,
-      query_text: userMessage,
+      question: userMessage,
       user_id: "674b169e502419ebf6cfb296",
       chat_id: chat,
     };
+
+
 
     await axios.post("http://localhost:5000/", data).then((response) => {
       console.log(response);
@@ -71,12 +74,16 @@ function MainScreen() {
           sources: data.sources,
         },
       ]);
-      console.log(data.sources);
+      
+      console.log("----query sonucu----");
+      console.log(data);
+      console.log("----query sonucu----");
+      // console.log(data.sources);
             
       // 
       
       setChat(data.chat_id);
-      console.log(chat);
+      console.log(`set Chat ID as: ${chat}`);
       
     });
 

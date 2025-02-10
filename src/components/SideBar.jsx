@@ -19,7 +19,7 @@ function SideBar({ setCourse, setChat }) {
     { value: "CS307", label: "CS307" },
     { value: "PSY203", label: "PSY203" },
     { value: "NS206", label: "NS206" },
-    { value: "OPIM302", label: "OPIM302" },
+    // { value: "OPIM302", label: "OPIM302" },
     { value: "SPS303", label: "SPS303" },
   ];
 
@@ -28,12 +28,15 @@ function SideBar({ setCourse, setChat }) {
   useEffect(() => {
     async function getHistory() {
       try {
+        // console.log("getUserChats cagrildi ");
+        // console.log(`chatID : ${chat}`);
         const response = await axios.get("http://localhost:5000/getUserChats", {
           params: {
             user_name: "674b169e502419ebf6cfb296",
           },
         });
-
+        console.log(response.data.chats);
+        
         setHistoryArr(response.data.chats);
       } catch (error) {
         console.log("Error fetching data: ", error);
