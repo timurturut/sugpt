@@ -7,7 +7,6 @@ function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
 
   const navigate = useNavigate();
   const [selectedHistory, setSelectedHistory] = useState(null);
-  const [selectedCourse, setSelectedCourse] = useState(course);
 
   const courseOptions = [
     { value: "CS305", label: "CS305" },
@@ -20,6 +19,10 @@ function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
     { value: "NS206", label: "NS206" },
     { value: "SPS303", label: "SPS303" },
   ];
+
+  const [selectedCourse, setSelectedCourse] = useState(
+      courseOptions.find((option) => option.value === course) || null
+  );
 
   function handleCourseChange(option) {
     setSelectedCourse(option);
