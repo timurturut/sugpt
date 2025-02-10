@@ -63,7 +63,7 @@ function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
         />
         <p className="text-white text-2xl font-semibold mb-2">History</p>
         {historyArr.length > 0 ? (
-          historyArr.map(({ _id, title }) => (
+          historyArr.map(({ _id, title, course }) => (
             <div
               key={_id}
               className={`${
