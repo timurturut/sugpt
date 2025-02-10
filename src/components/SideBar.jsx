@@ -71,7 +71,7 @@ function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
               } cursor-pointer w-11/12 text-black p-2 rounded-lg shadow-md mb-2`}
               onClick={() => chatChange(_id)}
             >
-              {title}
+              {`${course}: ${title}`}
             </div>
           ))
         ) : (
