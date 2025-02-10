@@ -21,11 +21,8 @@ function SideBar({ setCourse, course, setChat, chat, setMessages, historyArr }) 
     { value: "SPS303", label: "SPS303" },
   ];
 
-  const [selectedCourse, setSelectedCourse] = useState(courseOptions.find(option => option.value === course) || null);
-
 
   function handleCourseChange(option) {
-    setSelectedCourse(option);
     setCourse(option.value);
   }
 
@@ -59,7 +56,7 @@ function SideBar({ setCourse, course, setChat, chat, setMessages, historyArr }) 
         <Select
           className="w-full max-w-xs mb-4"
           options={courseOptions}
-          value={selectedCourse}
+          value={courseOptions.find(option => option.value === course) || null}
           onChange={handleCourseChange}
           placeholder="Select a course"
           isSearchable
