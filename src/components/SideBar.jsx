@@ -48,8 +48,8 @@ function SideBar({ setCourse, course, setChat, chat, setMessages, historyArr, se
             onClick={() => handleNewChat()}
         />
       </div>
-      <h1 onClick={() => navigate("/profscreen")}  className="text-white text-xl font-semibold drop-shadow-lg mb-4 mr-2 cursor-pointer w-max">
-        File
+      <h1 onClick={() => navigate("/profscreen")}  className="text-white text-xl font-semibold drop-shadow-lg mb-4 ml-2 cursor-pointer w-max">
+        Admin
       </h1>
 
       <div className="flex flex-col items-center min-h-screen overflow-y-auto">
