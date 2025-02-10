@@ -29,14 +29,13 @@ function SideBar({ setCourse, setChat, setMessages, historyArr }) {
 
   function chatChange(id) {
     setChat(id);
-    
     setSelectedHistory(id);
   }
 
   function handleNewChat() {
     setChat(null);
     setMessages([]);
-    selectedHistory(null);
+    setSelectedHistory(null);
   }
 
   return (
