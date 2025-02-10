@@ -93,6 +93,7 @@ function MainScreen() {
       ]);
 
       setChat(data.chat_id);
+      setCourse(data.course)
       
             
       setLoading(false);
@@ -107,7 +108,7 @@ function MainScreen() {
 
   return (
     <div className="h-screen w-full flex">
-      <SideBar setCourse={setCourse} setChat={setChat} setMessages={setMessages} historyArr={historyArr} />
+      <SideBar course={course} setCourse={setCourse} setChat={setChat} setMessages={setMessages} historyArr={historyArr} />
 
       <div className="flex flex-col w-3/4 justify-end">
         <div className="flex flex-col flex-grow w-full overflow-y-auto items-center">

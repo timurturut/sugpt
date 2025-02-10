@@ -3,11 +3,11 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { FaCommentAlt } from "react-icons/fa";
 
-function SideBar({ setCourse, setChat, setMessages, historyArr }) {
+function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
 
   const navigate = useNavigate();
   const [selectedHistory, setSelectedHistory] = useState(null);
-  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [selectedCourse, setSelectedCourse] = useState(course);
 
   const courseOptions = [
     { value: "CS305", label: "CS305" },
@@ -18,7 +18,6 @@ function SideBar({ setCourse, setChat, setMessages, historyArr }) {
     { value: "CS307", label: "CS307" },
     { value: "PSY203", label: "PSY203" },
     { value: "NS206", label: "NS206" },
-    // { value: "OPIM302", label: "OPIM302" },
     { value: "SPS303", label: "SPS303" },
   ];
 
