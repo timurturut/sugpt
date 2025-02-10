@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import axios from "axios";
+import { FaCommentAlt } from "react-icons/fa";
 
 function SideBar({ setCourse, setChat }) {
 
@@ -59,14 +60,19 @@ function SideBar({ setCourse, setChat }) {
 
   return (
     <div className="h-screen w-1/4 flex flex-col bg-blue-400 overflow-hidden">
-      <div className={'flex flex-row'}>
+      <div className={'flex flex-row justify-center items-center'}>
         <h1 className="text-white text-4xl font-semibold drop-shadow-lg mb-4 ml-2 mr-auto">
           SuGPT
         </h1>
-        <h1 onClick={() => navigate("/profscreen")}  className="text-white text-xl font-semibold drop-shadow-lg mb-4 mr-2 cursor-pointer">
-          File
-        </h1>
+        <FaCommentAlt
+            className="text-white text-3xl cursor-pointer hover:text-gray-200 mr-3"
+            onClick={() => setChat(null)}
+        />
       </div>
+      <h1 onClick={() => navigate("/profscreen")}  className="text-white text-xl font-semibold drop-shadow-lg mb-4 mr-2 cursor-pointer w-max">
+        File
+      </h1>
+
       <div className="flex flex-col items-center min-h-screen overflow-y-auto">
         <Select
           className="w-full max-w-xs mb-4"
