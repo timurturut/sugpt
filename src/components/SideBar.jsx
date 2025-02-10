@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Select from "react-select";
 import { FaCommentAlt } from "react-icons/fa";
 
-function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
+function SideBar({ setCourse, course, setChat, chat, setMessages, historyArr }) {
 
   const navigate = useNavigate();
   const [selectedHistory, setSelectedHistory] = useState(null);
@@ -63,6 +63,7 @@ function SideBar({ setCourse, course, setChat, setMessages, historyArr }) {
           onChange={handleCourseChange}
           placeholder="Select a course"
           isSearchable
+          isDisabled={chat}
         />
         <p className="text-white text-2xl font-semibold mb-2">History</p>
         {historyArr.length > 0 ? (
