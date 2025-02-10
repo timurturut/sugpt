@@ -4,17 +4,13 @@ import axios from "axios";
 function ProfScreen({name}) {
     const [lessons, setLessons] = useState(["CS307", "CS408"]);
     const [activeLesson, setActiveLesson] = useState(null);
-    const [documents, setDocuments] = useState([
-        {name: "Document1.pdf", size: "1.2MB"},
-        {name: "Document2.docx", size: "800KB"},
-        {name: "Presentation.pptx", size: "3.5MB"},
-    ]);
+    const [documents, setDocuments] = useState([]);
 
     const handleDelete = async (index) => {
         setDocuments(documents.filter((_, i) => i !== index));
 
         try {
-            const response = await axios.post("http://localhost:5000/removeFileFromCourse", {
+            const response = await axios.delete("http://localhost:5000/removeFileFromCourse", {
                 course_code: activeLesson,
             });
 

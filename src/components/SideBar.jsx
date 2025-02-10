@@ -37,8 +37,11 @@ function SideBar({ setCourse, course, setChat, chat, setMessages, historyArr, se
     setCourse(null);
   }
 
+  //  #c10b25
+  //  #002776
+  //  #004890
   return (
-    <div className="h-screen w-1/4 flex flex-col bg-blue-400 overflow-hidden">
+    <div className="h-screen w-1/4 flex flex-col overflow-hidden" style={{ backgroundColor: '#004890' }}>
       <div className={'flex flex-row justify-center items-center'}>
         <h1 className="text-white text-4xl font-semibold drop-shadow-lg mb-4 ml-2 mr-auto">
           SuGPT
