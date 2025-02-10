@@ -25,7 +25,7 @@ function MainScreen() {
           }
         );
         setMessages(response.data.chat.messages);
-        setCourse(response.data.course)
+        setCourse(response.data.chat.course)
       } catch (error) {
         console.log("Error fetching data: ", error);
       }
