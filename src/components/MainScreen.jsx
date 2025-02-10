@@ -98,7 +98,7 @@ function MainScreen() {
 
       setLoading(false);
 
-        if (!oldChatStatus && data.server_reponse) {
+        if (!oldChatStatus && data.server_response) {
             const newHistory = [
                 {_id: data.chat_id, course: data.course, last_message_time: data.last_message_time, title: data.title},
                 ...historyArr
