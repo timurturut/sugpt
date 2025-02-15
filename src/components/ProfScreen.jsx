@@ -1,8 +1,13 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+import { FaHome  } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
+
+
 
 function ProfScreen({name}) {
-    const [lessons, setLessons] = useState(["CS307", "CS408"]);
+    const navigate = useNavigate();
+    const [lessons, setLessons] = useState(["CS302","CS305","CS307", "CS404"]);
     const [activeLesson, setActiveLesson] = useState(null);
     const [documents, setDocuments] = useState([]);
 
@@ -21,6 +26,8 @@ function ProfScreen({name}) {
         }
 
     };
+
+
 
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
@@ -80,6 +87,10 @@ function ProfScreen({name}) {
                 <h1 className="text-4xl font-semibold mb-2">Welcome</h1>
                 <p className="text-2xl font-semibold mb-2">Your Lessons</p>
                 <div className="flex gap-2">
+                    <FaHome 
+                            className="text-red text-3xl cursor-pointer hover:text-gray-200 mr-3"
+                            onClick={() => navigate("/")}
+                        />
                     {lessons.map((lesson) => (
                         <button
                             key={lesson}
@@ -89,6 +100,9 @@ function ProfScreen({name}) {
                             {lesson}
                         </button>
                     ))}
+                </div>
+                <div>
+                    
                 </div>
 
                 {/* Add File Button */}
