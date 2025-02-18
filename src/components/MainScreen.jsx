@@ -13,6 +13,10 @@ function MainScreen() {
   const [selectedHistory, setSelectedHistory] = useState(null);
   const messagesEndRef = useRef(null);
 
+  const [selectedModel, setSelectedModel] = useState("llama3.2:3b"); // Default model
+  const models = ["llama3.2:3b","deepseek-r1:1.5b"]; // get it from frontend
+
+
   useEffect(() => {
     async function getChatContent() {
       try {
@@ -116,6 +120,21 @@ function MainScreen() {
 
       <div className="flex flex-col w-3/4 justify-end">
         <div className="flex flex-col flex-grow w-full overflow-y-auto items-center">
+
+        <div className="flex w-full items-center gap-4 p-4 border">
+        <select
+          className="model-select p-2 border rounded-md "
+          value={selectedModel}
+          onChange={(e) => setSelectedModel(e.target.value)}
+        >
+          {models.map((model) => (
+            <option key={model} value={model}>
+              {model}
+            </option>
+          ))}
+        </select>
+        <p className="text-gray-600">Selected LLM Model: {selectedModel}</p>
+</div>
           <div className="flex flex-col w-3/4 overflow-y-visible">
             {
               messages.map((msg, index) => (
