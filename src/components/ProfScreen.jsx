@@ -1,13 +1,12 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
-import { FaHome  } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-
+import {FaHome} from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
 
 
 function ProfScreen({name}) {
     const navigate = useNavigate();
-    const [lessons, setLessons] = useState(["CS302","CS305","CS307", "CS404"]);
+    const [lessons, setLessons] = useState(["CS302", "CS305", "CS307", "CS404"]);
     const [activeLesson, setActiveLesson] = useState(null);
     const [documents, setDocuments] = useState([]);
 
@@ -16,8 +15,10 @@ function ProfScreen({name}) {
         setDocuments(documents.filter((_, i) => i !== index));
         try {
             const response = await axios.delete("http://localhost:5000/removeFileFromCourse", {
-                course_code: activeLesson,
-                data: [name]
+                data: {
+                    course_code: activeLesson,
+                    data: [name]
+                }
             });
 
             console.log("File deleted successfully:", response.data);
@@ -27,7 +28,6 @@ function ProfScreen({name}) {
         }
 
     };
-
 
 
     const handleFileUpload = async (event) => {
@@ -68,11 +68,11 @@ function ProfScreen({name}) {
         async function getCourseFiles() {
             if (!activeLesson) return;
 
-            try {                
+            try {
                 const response = await axios.get("http://localhost:5000/getCourseFiles", {
                     params: {course_code: activeLesson},
                 });
-                
+
                 setDocuments(response.data.files);
             } catch (error) {
                 console.log("Error fetching data: ", error);
@@ -88,10 +88,10 @@ function ProfScreen({name}) {
                 <h1 className="text-4xl font-semibold mb-2">Welcome</h1>
                 <p className="text-2xl font-semibold mb-2">Your Lessons</p>
                 <div className="flex gap-2">
-                    <FaHome 
-                            className="text-red text-3xl cursor-pointer hover:text-gray-200 mr-3"
-                            onClick={() => navigate("/")}
-                        />
+                    <FaHome
+                        className="text-red text-3xl cursor-pointer hover:text-gray-200 mr-3"
+                        onClick={() => navigate("/")}
+                    />
                     {lessons.map((lesson) => (
                         <button
                             key={lesson}
@@ -103,7 +103,7 @@ function ProfScreen({name}) {
                     ))}
                 </div>
                 <div>
-                    
+
                 </div>
 
                 {/* Add File Button */}
