@@ -58,6 +58,8 @@ function ProfScreen({name}) {
         } catch (error) {
             console.error("Error uploading file:", error);
         }
+
+        event.target.value = "";
     }
 
     const handleLessonClick = (lesson) => {
