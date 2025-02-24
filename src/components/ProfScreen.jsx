@@ -12,11 +12,12 @@ function ProfScreen({name}) {
     const [documents, setDocuments] = useState([]);
 
     const handleDelete = async (index) => {
+        const name = documents.at(index).name;
         setDocuments(documents.filter((_, i) => i !== index));
-
         try {
             const response = await axios.delete("http://localhost:5000/removeFileFromCourse", {
                 course_code: activeLesson,
+                data: [name]
             });
 
             console.log("File deleted successfully:", response.data);
