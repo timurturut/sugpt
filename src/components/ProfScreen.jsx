@@ -36,7 +36,7 @@ function ProfScreen({name}) {
         if (!file) return;
 
         const formData = new FormData();
-        formData.append("file", file);
+        formData.append("files", file);
         formData.append("courseCode", activeLesson);
 
         try {
