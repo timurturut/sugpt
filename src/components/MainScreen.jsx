@@ -14,7 +14,7 @@ function MainScreen() {
     const messagesEndRef = useRef(null);
 
     const [selectedModel, setSelectedModel] = useState("llama3.2:3b");
-    const models = ["llama3.2:3b", "deepseek-r1:1.5b"];
+    const models = ["llama3.2:3b", "deepseek-r1:1.5b", "gemma2:2b", "mistral:7b"];
 
 
     useEffect(() => {
