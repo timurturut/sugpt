@@ -32,29 +32,31 @@ function ProfScreen({name}) {
 
     const handleFileUpload = async (event) => {
         const file = event.target.files[0];
-
+        
         if (!file) return;
-
+        
         const formData = new FormData();
         formData.append("files", file);
         formData.append("course_code", activeLesson);
-
+        
         try {
             const response = await axios.put("http://localhost:5000/addFileToCourse", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
             });
-
+            
             console.log("File uploaded successfully:", response.data);
-
+            
             // If the upload is successful, update the documents state
+            console.log(file.size);
             const newDocument = {
                 name: file.name,
-                size: (file.size / (1024 * 1024)).toFixed(2) + "MB",
+                size: file.size,
             };
+            
             setDocuments((prevDocs) => [...prevDocs, newDocument]);
-
+            
         } catch (error) {
             console.error("Error uploading file:", error);
         }
