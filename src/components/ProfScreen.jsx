@@ -12,7 +12,6 @@ function ProfScreen({name}) {
 
     const handleDelete = async (index) => {
         const name = documents.at(index).name;
-        setDocuments(documents.filter((_, i) => i !== index));
         try {
             const response = await axios.delete("http://localhost:5000/removeFileFromCourse", {
                 data: {
@@ -20,6 +19,7 @@ function ProfScreen({name}) {
                     data: [name]
                 }
             });
+            setDocuments(documents.filter((_, i) => i !== index));
 
             console.log("File deleted successfully:", response.data);
 
@@ -37,7 +37,7 @@ function ProfScreen({name}) {
 
         const formData = new FormData();
         formData.append("files", file);
-        formData.append("courseCode", activeLesson);
+        formData.append("course_code", activeLesson);
 
         try {
             const response = await axios.put("http://localhost:5000/addFileToCourse", formData, {
