@@ -134,7 +134,7 @@ function ProfScreen({name}) {
                         </tr>
                         </thead>
                         <tbody>
-                        {documents.map((doc, index) => (
+                        {documents.length !== 0 && documents.map((doc, index) => (
                             <tr key={index}>
                                 <th>{index + 1}</th>
                                 <td>{doc.name}</td>
