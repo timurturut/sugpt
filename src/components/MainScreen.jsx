@@ -13,8 +13,8 @@ function MainScreen() {
     const [selectedHistory, setSelectedHistory] = useState(null);
     const messagesEndRef = useRef(null);
 
-    const [selectedModel, setSelectedModel] = useState("llama3.2:3b"); // Default model
-    const models = ["llama3.2:3b", "deepseek-r1:1.5b"]; // get it from frontend
+    const [selectedModel, setSelectedModel] = useState("llama3.2:3b");
+    const models = ["llama3.2:3b", "deepseek-r1:1.5b"];
 
 
     useEffect(() => {
