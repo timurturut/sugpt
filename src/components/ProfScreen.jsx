@@ -2,6 +2,8 @@ import {useEffect, useState} from "react";
 import {FaHome} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 
+import api from "../api/axiosConfig";
+
 
 function ProfScreen({name}) {
     const navigate = useNavigate();
