@@ -14,7 +14,7 @@ function App() {
                     <Routes>
                         <Route path="/" element={<LoginScreen />} />
                         <Route path="/chat" element={<ProtectedRoute element={<MainScreen />} />} />
-                        <Route path="/admin" element={<ProtectedRoute element={<ProfScreen />} />} />
+                        <Route path="/admin" element={<ProtectedRoute element={<ProfScreen />} requireAdmin={true} />} />
                     </Routes>
                 </Router>
             </AuthProvider>
