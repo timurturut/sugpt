@@ -8,7 +8,7 @@ import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
     return (
-        <GoogleOAuthProvider clientId="616977821764-6gsebd1u9k40k8jq40h9qra6upesh2ka.apps.googleusercontent.com">
+        <GoogleOAuthProvider clientId="886851848733-vc3geef30ojiljbegrbu2133jf7sar0s.apps.googleusercontent.com">
             <AuthProvider>
                 <Router>
                     <Routes>

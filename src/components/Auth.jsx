@@ -16,7 +16,7 @@ export const AuthProvider = ({ children }) => {
     useEffect(() => {
         const storedUser = localStorage.getItem("user");
         if (storedUser) {
-            setUser(JSON.parse(storedUser));
+            setUser(storedUser);
         }
         setLoading(false);
     }, []);
@@ -24,15 +24,18 @@ export const AuthProvider = ({ children }) => {
 
     const login = async (credentialResponse) => {
         try {
-            const loginResponse = await axios.post("http://localhost:8080/login", {}, {
+            
+            const loginResponse = await axios.post("http://localhost:5000/login", {}, {
                 headers: {
-                    Authorization: `Bearer ${credentialResponse}`
+                    Authorization: `Bearer ${credentialResponse.credential}`
                 }
             });
 
-            const jwtToken = loginResponse?.token
+            const jwtToken = loginResponse.data.token
+            
             setUser(jwtToken);
-            localStorage.setItem("user", JSON.stringify(jwtToken));
+            localStorage.setItem("user", jwtToken);
+
         } catch (error) {
             console.error("Login failed:", error);
         }
