@@ -1,4 +1,5 @@
 import { createContext, useContext, useState, useEffect } from "react";
+import axios from "axios";
 
 // Create AuthContext
 const AuthContext = createContext();
@@ -9,7 +10,7 @@ export const useAuth = () => useContext(AuthContext);
 // AuthProvider component
 export const AuthProvider = ({ children }) => {
     const [user, setUser] = useState(null);
-    const [loading, setLoading] = useState(true); // New: Prevent flicker
+    const [loading, setLoading] = useState(true);
 
     // Check local storage on page load
     useEffect(() => {
@@ -17,15 +18,26 @@ export const AuthProvider = ({ children }) => {
         if (storedUser) {
             setUser(JSON.parse(storedUser));
         }
-        console.log("hit useEffect")
-        setLoading(false); // Mark loading as false after checking storage
+        setLoading(false);
     }, []);
 
-    // Function to log in
-    const login = (credentialResponse) => {
-        setUser(credentialResponse);
-        localStorage.setItem("user", JSON.stringify(credentialResponse));
+
+    const login = async (credentialResponse) => {
+        try {
+            const loginResponse = await axios.post("http://localhost:8080/login", {}, {
+                headers: {
+                    Authorization: `Bearer ${credentialResponse}`
+                }
+            });
+
+            const jwtToken = loginResponse?.token
+            setUser(jwtToken);
+            localStorage.setItem("user", JSON.stringify(jwtToken));
+        } catch (error) {
+            console.error("Login failed:", error);
+        }
     };
+
 
     // Function to log out
     const logout = () => {

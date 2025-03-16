@@ -19,7 +19,7 @@ function LoginScreen() {
                 onError={() => {
                     console.log('Login Failed');
                 }}
-                // useOneTap
+                useOneTap
             />
         </div>
     )
