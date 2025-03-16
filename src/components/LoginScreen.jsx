@@ -9,10 +9,8 @@ function LoginScreen() {
     return (
         <div className={"flex items-center justify-center h-screen"}>
             <GoogleLogin
-                onSuccess={credentialResponse => {
-                    console.log(credentialResponse);
-
-                    login(credentialResponse);
+                onSuccess={async credentialResponse => {
+                    await login(credentialResponse);
 
                     navigate("/chat");
                 }}
