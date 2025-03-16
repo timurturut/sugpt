@@ -1,8 +1,8 @@
 import {useState, useRef, useEffect} from "react";
-import axios from "axios";
 import SideBar from "./SideBar";
 import Message from "./Message";
 import InputBox from "./InputBox";
+import api from "../api/axiosConfig";
 
 function MainScreen() {
     const [messages, setMessages] = useState([]);
@@ -20,8 +20,8 @@ function MainScreen() {
     useEffect(() => {
         async function getChatContent() {
             try {
-                const response = await axios.get(
-                    "http://localhost:5000/getChatContent",
+                const response = await api.get(
+                    "getChatContent",
                     {
                         params: {
                             chat_id: chat,
@@ -43,7 +43,7 @@ function MainScreen() {
     useEffect(() => {
         async function getHistory() {
             try {
-                const response = await axios.get("http://localhost:5000/getUserChats", {
+                const response = await api.get("getUserChats", {
                     params: {
                         user_name: "674b169e502419ebf6cfb296",
                     },
@@ -82,7 +82,7 @@ function MainScreen() {
         };
 
 
-        await axios.post("http://localhost:5000/", data).then((response) => {
+        await api.post("", data).then((response) => {
             console.log(response);
 
             const data = response.data;

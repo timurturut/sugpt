@@ -1,5 +1,4 @@
 import {useEffect, useState} from "react";
-import axios from "axios";
 import {FaHome} from "react-icons/fa";
 import {useNavigate} from "react-router-dom";
 
@@ -13,7 +12,7 @@ function ProfScreen({name}) {
     const handleDelete = async (index) => {
         const name = documents.at(index).name;
         try {
-            const response = await axios.delete("http://localhost:5000/removeFileFromCourse", {
+            const response = await api.delete("removeFileFromCourse", {
                 data: {
                     course_code: activeLesson,
                     data: [name]
@@ -40,7 +39,7 @@ function ProfScreen({name}) {
         formData.append("course_code", activeLesson);
         
         try {
-            const response = await axios.put("http://localhost:5000/addFileToCourse", formData, {
+            const response = await api.put("addFileToCourse", formData, {
                 headers: {
                     "Content-Type": "multipart/form-data",
                 },
@@ -73,7 +72,7 @@ function ProfScreen({name}) {
             if (!activeLesson) return;
 
             try {
-                const response = await axios.get("http://localhost:5000/getCourseFiles", {
+                const response = await api.get("getCourseFiles", {
                     params: {course_code: activeLesson},
                 });
 
