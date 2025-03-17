@@ -12,7 +12,7 @@ function LoginScreen() {
                 onSuccess={async credentialResponse => {
                     await login(credentialResponse);
 
-                    navigate("/chat");
+                    navigate("/");
                 }}
                 onError={() => {
                     console.log('Login Failed');

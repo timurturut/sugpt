@@ -7,7 +7,7 @@ const ProtectedRoute = ({ element, requireAdmin = false }) => {
 
     if (loading) return <div>Loading...</div>; // Prevents premature redirects
 
-    if (!user) return <Navigate to="/" replace />;
+    if (!user) return <Navigate to="/login" replace />;
 
     if(requireAdmin) {
         try {
@@ -15,11 +15,11 @@ const ProtectedRoute = ({ element, requireAdmin = false }) => {
             const userRole = decodedToken.role;
 
             if (userRole !== "admin") {
-                return <Navigate to="/chat" replace/>;
+                return <Navigate to="/" replace/>;
             }
         } catch (error) {
             console.error("Invalid token:", error);
-            return <Navigate to="/chat" replace/>;
+            return <Navigate to="/" replace/>;
         }
     }
 
