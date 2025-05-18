@@ -3,6 +3,7 @@ import SideBar from "./SideBar";
 import Message from "./Message";
 import InputBox from "./InputBox";
 import api from "../api/axiosConfig";
+import {useAuth} from "./Auth";
 
 function MainScreen() {
     const [messages, setMessages] = useState([]);
@@ -16,6 +17,7 @@ function MainScreen() {
     const [selectedModel, setSelectedModel] = useState("llama3.2:3b");
     const models = ["llama3.2:3b", "deepseek-r1:1.5b", "gemma2:2b", "mistral:7b"];
 
+    const { user } = useAuth();
 
     useEffect(() => {
         async function getChatContent() {
@@ -45,7 +47,7 @@ function MainScreen() {
             try {
                 const response = await api.get("getUserChats", {
                     params: {
-                        user_name: "674b169e502419ebf6cfb296",
+                        user_name: user,
                     },
                 });
                 setHistoryArr(response.data.chats);
@@ -154,6 +156,9 @@ function MainScreen() {
                                 />
                             ))}
                         <div ref={messagesEndRef}/>
+                    </div>
+                    <div>
+                        {messages && user.given_name}
                     </div>
                 </div>
                 {course ? (
